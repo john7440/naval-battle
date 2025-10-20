@@ -5,6 +5,10 @@ from game import Game
 
 
 def main():
+    """
+    This is the main function.
+    It launches the game loop.
+    """
     game = Game()
     game.play()
 
