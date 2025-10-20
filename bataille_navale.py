@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import pandas as pd
+from boats import Boats
 
 
 def create_grid(n):
@@ -128,17 +129,16 @@ def main():
     We create a grid of n rows and n columns and place boats in the grid.
     :return: the message for user to put a coord and the updated grid accordingly.
     """
+    b1 = Boats('aircraft', 5, [('B', '2'), ('C', '2'), ('D', '2'), ('E', '2'), ('F', '2')], 0)
+    b2 = Boats('cruiser', 4, [('A', '4'), ('A', '5'), ('A', '6'), ('A', '7')], 0)
+    b3 = Boats('destroyer', 3, [('C', '5'), ('C', '6'), ('C', '7')], 0)
+    b4 = Boats('submarine', 3, [('H', '5'), ('I', '5'), ('J', '5')], 0)
+    b5 = Boats('torpedo', 2, [('E', '9'), ('F', '9')], 0)
 
-    # A list of dict which contains all boats
-    my_boats = [{'name': 'aircraft', 'part': 5, 'pos': [('B','2'), ('C','2'), ('D','2'), ('E','2'), ('F','2')],
-                 'touché': 0},
-                {'name': 'cruiser', 'part': 4, 'pos': [('A','4'), ('A','5'), ('A','6'), ('A','7')], 'touché': 0},
-                {'name': 'destroyer', 'part': 3, 'pos': [('C','5'), ('C','6'), ('C','7')], 'touché': 0},
-                {'name': 'submarine', 'part': 3, 'pos': [('H', '5'), ('I','5'), ('J','5')], 'touché': 0},
-                {'name': 'torpedo', 'part': 2, 'pos': [('E','9'), ('F','9')], 'touché': 0}]
+    list_boats = [b1, b2, b3, b4, b5]
 
     grid = create_grid(10)
-    naval_battle(grid, my_boats)
+    naval_battle(grid, list_boats)
 
 
 if __name__== '__main__':
