@@ -29,6 +29,12 @@ class Game:
          ]
 
     def play(self):
+        """
+        This function plays the game, it first asks user to
+        put a coordinate, then it checks if the boat is hit or not.
+        Then it checks if the boat is sunk or not and display a message
+        accordingly.
+        """
         while True:
             user_input = input("\nEnter coordinate (ex: A2, B3, etc) or 'quit': ").strip().upper()
             if user_input == 'QUIT':
@@ -60,6 +66,12 @@ class Game:
                 break
 
     def process_hit(self, coord):
+        """
+        This function processes the coordinate, and displays the
+        message accordingly, then it displays the updated grid.
+        :param coord: the coordinate entered by the user.
+        :return: a message about the hit and the updated grid.
+        """
         for boat in self.boats:
             if boat.is_hit(coord):
                 self.grid.update(coord[1], coord[0], 'X')
