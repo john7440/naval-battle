@@ -3,18 +3,75 @@ from boats import Boats
 
 
 class Game:
-
+    """
+    This class contains the logiq of the game.
+    """
     def __init__(self):
+        """
+        This function initializes the game variables.
+        """
         self.grid = Grid()
         self.boats =self.setup_of_boats()
         self.played_coords = set()
 
     @staticmethod
     def setup_of_boats():
-         return [
+        """
+        This function creates a list of boats with the Boats class.
+        :return: a list of boats.
+        """
+        return [
              Boats('aircraft', 5, [('B', '2'), ('C', '2'), ('D', '2'), ('E', '2'), ('F', '2')]),
              Boats('cruiser', 4, [('A', '4'), ('A', '5'), ('A', '6'), ('A', '7')]),
              Boats('destroyer', 3, [('C', '5'), ('C', '6'), ('C', '7')]),
              Boats('submarine', 3, [('H', '5'), ('I', '5'), ('J', '5')]),
              Boats('torpedo', 2, [('E', '9'), ('F', '9')])
          ]
+
+    def play(self):
+        while True:
+            user_input = input("\nEnter coordinate (ex: A2, B3, etc) or 'quit': ").strip().upper()
+            if user_input == 'QUIT':
+                print('\nThank you for playing!')
+                break
+
+            if len(user_input) not in [2,3]:
+                print("Invalid input. Please try again.")
+
+            x, y = user_input[0], user_input[1:]
+            print(x)
+            print(y)
+            if x not in self.grid.grid.columns or y not in self.grid.grid.index:
+                print("Invalid coordinate! Column must be A–J and row 1–10.")
+                continue
+
+            coord = (x, y)
+            if coord in self.played_coords:
+                print("You already played that coord! Try a new one")
+                continue
+
+            self.played_coords.add(coord)
+            self.process_hit(coord)
+
+            if all(boats.is_sunk() for boats in self.boats):
+                print('\n===================================')
+                print('     Congratulations! You Won!  ')
+                print('===================================')
+                break
+
+    def process_hit(self, coord):
+        for boat in self.boats:
+            if boat.is_hit(coord):
+                self.grid.update(coord[1], coord[0], 'X')
+                if boat.is_sunk():
+                    print(f"\n!!!!!!! You sunk the {boat.name}! !!!!!!!!\n")
+                else:
+                    print("Nice! You touched a boat!")
+                break
+        else:
+            self.grid.update(coord[1], coord[0], 'O')
+            print('You missed! Try again')
+
+        remaining = sum(not b.is_sunk() for b in self.boats)
+        print(f"--------> {remaining} boats left !<----------\n")
+        self.grid.display()
