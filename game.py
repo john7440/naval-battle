@@ -46,8 +46,6 @@ class Game:
                 print("Invalid input. Please try again.")
 
             x, y = user_input[0], user_input[1:]
-            print(x)
-            print(y)
             if x not in self.grid.grid.columns or y not in self.grid.grid.index:
                 print("Invalid coordinate! Column must be A–J and row 1–10.")
                 continue
