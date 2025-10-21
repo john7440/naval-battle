@@ -5,10 +5,11 @@ class Boats:
 
     def __init__(self, name, part, pos):
         """
-        This function creates boats for the naval battle.
+        This function creates boats for the naval battle, each
+        of them have a name, number of parts and positions.
         :param name: the name of the boat.
         :param part: the number of parts of the boat.
-        :param pos: the position of the boat.
+        :param pos: the positions of the boat.
         """
         self.name = name
         self.part = part
@@ -18,8 +19,8 @@ class Boats:
 
     def is_hit(self, coord):
         """
-        This function checks if the given coordinate is on the boat, if
-        that's the case then we update it.
+        This function checks if the given coordinate are the coordinate of one of
+        the boat, if that's the case then we return True else False.
         :param coord: the coordinate to check.
         :return: a boolean according to the condition.
         """
@@ -31,7 +32,7 @@ class Boats:
 
     def is_sunk(self):
         """
-        This function checks if all pos of the boat are hit or not.
+        This function checks if all boat's positions are hit or not.
         If that's the case then the boat is sunk, else not.
         :return: a boolean.
         """
