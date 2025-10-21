@@ -3,16 +3,14 @@ class Boats:
     This class is used to creat boats for the naval battle.
     """
 
-    def __init__(self, name, part, pos):
+    def __init__(self, name, pos):
         """
         This function creates boats for the naval battle, each
         of them have a name, number of parts and positions.
         :param name: the name of the boat.
-        :param part: the number of parts of the boat.
         :param pos: the positions of the boat.
         """
         self.name = name
-        self.part = part
         self.pos = set(pos)
         self.hits = set()
 
