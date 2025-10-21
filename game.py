@@ -31,9 +31,10 @@ class Game:
     def play(self):
         """
         This function plays the game, it first asks user to
-        put a coordinate, then it checks if the boat is hit or not.
-        Then it checks if the boat is sunk or not and display a message
-        accordingly.
+        put a coordinate, then it checks if the hit is valid and wasn't already played,
+        then it add the coordinate to 'played_coords' and calls process_hit to check
+        if the boat is hit or not.
+        If all boats are sunk it display the winning message.
         """
         while True:
             user_input = input("\nEnter coordinate (ex: A2, B3, etc) or 'quit': ").strip().upper()
