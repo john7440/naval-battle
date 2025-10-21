@@ -11,7 +11,7 @@ class Game:
         This function initializes the game variables.
         """
         self.grid = Grid()
-        self.boats =self.setup_of_boats()
+        self.boats = self.setup_of_boats()
         self.played_coords = set()
 
     @staticmethod
@@ -77,6 +77,8 @@ class Game:
                 self.grid.update(coord[1], coord[0], 'X')
                 if boat.is_sunk():
                     print(f"\n!!!!!!! You sunk the {boat.name}! !!!!!!!!\n")
+                    for bx, by in boat.pos:
+                        self.grid.update(by, bx, '█')
                 else:
                     print("Nice! You touched a boat!")
                 break
